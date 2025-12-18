@@ -66,14 +66,14 @@ void print(int a[]) {
 
 拼起来就是一个完整的复读机程序咯。
 
-??? "`copycat.cpp`"
+??? note "`copycat.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
-    int a[LEN], b[LEN];
+    int a[LEN];
     
     void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
@@ -115,7 +115,7 @@ void print(int a[]) {
 
 高精度加法，其实就是竖式加法啦。
 
-![](./images/plus.png)
+![](./images/plus.svg)
 
 也就是从最低位开始，将两个加数对应位置上的数码相加，并判断是否达到或超过 $10$。如果达到，那么处理进位：将更高一位的结果上增加 $1$，当前位的结果减少 $10$。
 
@@ -140,12 +140,12 @@ void add(int a[], int b[], int c[]) {
 
 试着和上一部分结合，可以得到一个加法计算器。
 
-??? "`adder.cpp`"
+??? note "`adder.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN];
     
@@ -198,7 +198,7 @@ void add(int a[], int b[], int c[]) {
 
 高精度减法，也就是竖式减法啦。
 
-![](./images/subtraction.png)
+![](./images/subtraction.svg)
 
 从个位起逐位相减，遇到负的情况则向上一位借 $1$。整体思路与加法完全一致。
 
@@ -220,12 +220,12 @@ void sub(int a[], int b[], int c[]) {
 
 将上一个程序中的 `add()` 替换成 `sub()`，就有了一个减法计算器。
 
-??? "`subtractor.cpp`"
+??? note "`subtractor.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN];
     
@@ -351,7 +351,7 @@ void mul(int a[], int b[], int c[]) {
 
 高精度除法的一种实现方式就是竖式长除法。
 
-![](./images/division.png)
+![](./images/division.svg)
 
 竖式长除法实际上可以看作一个逐次减法的过程。例如上图中商数十位的计算可以这样理解：将 $45$ 减去三次 $12$ 后变得小于 $12$，不能再减，故此位为 $3$。
 
@@ -383,10 +383,10 @@ void div(int a[], int b[], int c[], int d[]) {
     if (a[la - 1] != 0) break;
   for (lb = LEN - 1; lb > 0; --lb)
     if (b[lb - 1] != 0) break;
-  if (lb == 0) {
+  if (lb == 0) {  // 除数不能为零
     puts("> <");
     return;
-  }  // 除数不能为零
+  }
 
   // c 是商
   // d 是被除数的剩余部分，算法结束后自然成为余数
@@ -415,12 +415,12 @@ void div(int a[], int b[], int c[], int d[]) {
 
 将上面介绍的四则运算的实现结合，即可完成开头提到的计算器程序。
 
-??? "`calculator.cpp`"
+??? note "`calculator.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN], d[LEN];
     
@@ -723,7 +723,7 @@ $$
 
 整个过程可以递归实现。为清晰起见，下面的代码通过 Karatsuba 算法实现了多项式乘法，最后再处理所有的进位问题。
 
-??? "karatsuba_mulc.cpp"
+??? note "karatsuba_mulc.cpp"
     ```cpp
     int *karatsuba_polymul(int n, int *a, int *b) {
       if (n <= 32) {
@@ -774,7 +774,7 @@ $$
     }
     ```
 
-??? " 关于 `new` 和 `delete`"
+??? note "关于 `new` 和 `delete`"
     见 [内存池](../contest/common-tricks.md#内存池)。
 
 但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
@@ -791,13 +791,13 @@ $$
 
 [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类，以及 [这里](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h) 支持动态长度及四则运算的超迷你实现类。
 
-??? 这里是另一个模板
+??? note "这里是另一个模板"
     ```cpp
-    #define MAXN 9999
+    constexpr int MAXN = 9999;
     // MAXN 是一位中最大的数字
-    #define MAXSIZE 10024
+    constexpr int MAXSIZE = 10024;
     // MAXSIZE 是位数
-    #define DLEN 4
+    constexpr int DLEN = 4;
     
     // DLEN 记录压几位
     struct Big {
@@ -807,7 +807,7 @@ $$
       Big() {
         len = 1;
         memset(a, 0, sizeof a);
-        flag = 0;
+        flag = false;
       }
     
       Big(const int);
@@ -898,11 +898,11 @@ $$
       if (*this < T) {
         t1 = T;
         t2 = *this;
-        ctf = 1;
+        ctf = true;
       } else {
         t1 = *this;
         t2 = T;
-        ctf = 0;
+        ctf = false;
       }
       big = t1.len;
       int j = 0;
@@ -981,14 +981,14 @@ $$
     
     bool Big::operator<(const Big& T) const {
       int ln;
-      if (len < T.len) return 233;
+      if (len < T.len) return true;
       if (len == T.len) {
         ln = len - 1;
         while (ln >= 0 && a[ln] == T.a[ln]) --ln;
-        if (ln >= 0 && a[ln] < T.a[ln]) return 233;
-        return 0;
+        if (ln >= 0 && a[ln] < T.a[ln]) return true;
+        return false;
       }
-      return 0;
+      return false;
     }
     
     bool Big::operator<(const int& t) const {

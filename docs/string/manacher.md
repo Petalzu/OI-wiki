@@ -66,7 +66,7 @@ $$
             d1[i] = 1
             while 0 <= i - d1[i] and i + d1[i] < n and s[i - d1[i]] == s[i + d1[i]]:
                 d1[i] += 1
-            
+        
             d2[i] = 0
             while 0 <= i - d2[i] - 1 and i + d2[i] < n and s[i - d2[i] - 1] == s[i + d2[i]]:
                 d2[i] += 1
@@ -106,7 +106,7 @@ $$
 
     然而有一个 **棘手的情况** 需要被正确处理：当「内部」的回文串到达「外部」回文串的边界时，即 $j - d_1[j] + 1 \le l$（或者等价的说，$i + d_1[j] - 1 \ge r$）。因为在「外部」回文串范围以外的对称性没有保证，因此直接置 $d_1[i] = d_1[j]$ 将是不正确的：我们没有足够的信息来断言在位置 $i$ 的回文串具有同样的长度。
 
-    实际上，为了正确处理这种情况，我们应该「截断」回文串的长度，即置 $d_1[i] = r - i$。之后我们将运行朴素算法以尝试尽可能增加 $d_1[i]$ 的值。
+    实际上，为了正确处理这种情况，我们应该「截断」回文串的长度，即置 $d_1[i] = r - i + 1$。之后我们将运行朴素算法以尝试尽可能增加 $d_1[i]$ 的值。
 
     该种情况的图示如下（以 $j$ 为中心的回文串已经被截断以落在「外部」回文串内）：
 
@@ -230,7 +230,6 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 -   [UVa #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
 -   [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
-
-***
+-   [CF1326D2. Labyrinth](https://codeforces.com/contest/1326/problem/D2)
 
 **本页面主要译自博文 [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) 与其英文翻译版 [Finding all sub-palindromes in $O(N)$](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

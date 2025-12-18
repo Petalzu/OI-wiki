@@ -71,6 +71,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
     ```python
     from queue import Queue
     
+    
     def bfs(u):
         Q = Queue()
         Q.put(u)
@@ -87,6 +88,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
                     d[e[i].to] = d[u] + 1
                     p[e[i].to] = u
                 i = e[i].nxt
+    
     
     def restore(x):
         res = []
@@ -148,7 +150,7 @@ BFS 序列通常也不唯一。
 
 ## 双端队列 BFS
 
-如果你不了解双端队列 `deque` 的话，请参阅 [deque 相关章节](../../lang/csl/sequence-container/#deque)。
+如果你不了解双端队列 `deque` 的话，请参阅 [deque 相关章节](../lang/csl/sequence-container.md#deque)。
 
 双端队列 BFS 又称 0-1 BFS。
 

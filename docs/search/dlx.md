@@ -108,12 +108,16 @@ $$
       for (int j = m; j >= 1; --j) num[i] = num[i] << 1 | a[i][j];
     for (int state = 0; state < 1 << n; ++state) {
       int tmp = 0;
+      bool flag = true;
       for (int i = 1; i <= n; ++i)
         if ((1 << i - 1) & state) {
-          if (tmp & num[i]) break;
+          if (tmp & num[i]) {
+            flag = false;
+            break;
+          }
           tmp |= num[i];
         }
-      if (tmp == (1 << m) - 1) {
+      if (flag && tmp == (1 << m) - 1) {
         ok = 1;
         for (int i = 1; i <= n; ++i)
           if ((1 << i - 1) & state) printf("%d ", i);
@@ -283,7 +287,7 @@ $$
 
     答案即为被删除的三行：$1, 4, 5$。
 
-**强烈建议自己模拟一遍矩阵删除、还原与回溯的过程后，再接着阅读下文。**
+强烈建议自己模拟一遍矩阵删除、还原与回溯的过程后，再接着阅读下文。
 
 通过上述步骤，可将 X 算法的流程概括如下：
 
@@ -514,18 +518,18 @@ int col[MS], row[MS];
       int i, j, c = R[0];
       if (!R[0]) {
         ans = dep;
-        return 1;
+        return true;
       }
       IT(i, R, 0) if (siz[i] < siz[c]) c = i;
       remove(c);
       IT(i, D, c) {
         stk[dep] = row[i];
         IT(j, R, i) remove(col[j]);
-        if (dance(dep + 1)) return 1;
+        if (dance(dep + 1)) return true;
         IT(j, L, i) recover(col[j]);
       }
       recover(c);
-      return 0;
+      return false;
     }
     ```
 
@@ -552,7 +556,7 @@ DLX 递归及回溯的次数与矩阵中 $1$ 的个数有关，与矩阵的 $r, 
 
 DLX 的难点，不全在于链表的建立，而在于建模。
 
-**请确保已经完全掌握 DLX 模板后再继续阅读本文。**
+请确保已经完全掌握 DLX 模板后再继续阅读本文。
 
 我们每拿到一个题，应该考虑行和列所表示的意义：
 
@@ -651,9 +655,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 
 ## 外部链接
 
--   [夜深人静写算法（九）- Dancing Links X（跳舞链）\_WhereIsHeroFrom 的博客》](https://blog.csdn.net/whereisherofrom/article/details/79220897)
 -   [跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题 - 万仓一黍](https://www.cnblogs.com/grenet/p/3145800.html)
--   [DLX 算法一览 - zhangjianjunab](https://blog.csdn.net/zhangjianjunab/article/details/83688681)
 -   [搜索：DLX 算法 - 静听风吟。](https://www.cnblogs.com/aininot260/p/9629926.html)
 -   [《算法竞赛入门经典 - 训练指南》](https://book.douban.com/subject/35431537/)
 

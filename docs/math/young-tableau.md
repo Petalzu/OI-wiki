@@ -19,8 +19,8 @@
 
 以下表格中分别为整数分拆 $(5,4,1)$ 对应的杨图不同画法：
 
--   英式画法：![](./images/young-diagram-1.png)
--   法式画法：![](./images/young-diagram-2.png)
+-   英式画法：![](./images/young-diagram-1.svg)
+-   法式画法：![](./images/young-diagram-2.svg)
 
 ### 杨表
 
@@ -28,7 +28,7 @@
 
 **杨表**（Young tableau）是通过用取自某个字母表的符号填充杨氏图的框来获得的，这通常需要是一个全序集和。填入的元素写作 $x_{1}$,$x_{2}$,$x_{3}$,$\ldots$。但为了方便起见，都直接填入正整数。
 
-杨表最初应用于对称群的表示理论时，允许在杨图的 $n$ 的方格中任意填入 $1$ 到 $n$ 中相异的正整数。但现在的研究大多使用「标准」的杨表，即上述条件中各行与各列中方格的数字皆为严格递增的。由 $n$ 个方格的相异杨表数个数形成 [对和数](https://en.wikipedia.org/wiki/Telephone_number_%28mathematiics%29)：
+杨表最初应用于对称群的表示理论时，允许在杨图的 $n$ 的方格中任意填入 $1$ 到 $n$ 中相异的正整数。但现在的研究大多使用「标准」的杨表，即上述条件中各行与各列中方格的数字皆为严格递增的。由 $n$ 个方格的相异杨表数个数形成 [对和数](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29)：
 
 ???+ note "注释"
     **对和数**（involution number/telephone number）是在数学中是一个整数序列，用来计算 $n$ 条电话线中每条线路最多可以连接到另一条线路时可以相互连接的方法个数。它还可以用来描述完全图 $n$ 个顶点上的匹配数，$n$ 个对合元素的排列数，Hermite 多项式系数的绝对值之和，含有 $n$ 个格子的标准杨表的个数，以及不可约对称群的度数之和。
@@ -49,7 +49,7 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 例如，将 $3$ 插入杨表 $(2, 5, 9)(6, 7)(8)$ 的步骤为：
 
-![](./images/young-tableau-insert-1.png)![](./images/young-tableau-insert-2.png)![](./images/young-tableau-insert-3.png)![](./images/young-tableau-insert-4.png)
+![](./images/young-tableau-insert.svg)
 
 ### 变体
 
@@ -61,13 +61,13 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 例如，下图为整数分拆 $(5,4,1)$ 对应的一个标准斜杨表：
 
-![](./images/skew-tableau.png)
+![](./images/skew-tableau.svg)
 
 同理，若满足同一列中的数字严格递增，且同一行中的数字单调递增，则该斜杨表被称作 **半标准斜杨表**；若半标准斜杨表满足各方格不重复的填入数字 $1$ 到 $n$（方格总数），则该斜杨表被称作 **标准斜杨表**。注意，由不同的 $\lambda$ 和 $\mu$ 可得到相同的 $\lambda/\mu$。虽然大部分斜杨表的性质都只依赖于取完差集的方格，但是仍然部分运算依赖于 $\lambda$ 和 $\mu$ 的选取。因此，$\lambda/\mu$ 必须被视为包含两个元素信息：$\lambda$ 和 $\mu$。当 $\mu$ 是空分拆（$0$ 的唯一一种分拆）时，斜杨表 $\lambda/\mu$ 就变成杨表 $\lambda$。
 
 ## 应用
 
-杨表常用于在组合学、表示理论和代数几何中，用各种不同计算杨表个数的方法得到舒尔函数的定义及相关的恒等式。在信息学竞赛中，常有考察杨表钩长公式的题目。
+杨表常用于在组合学、表示理论和代数几何中，用各种不同计算杨表个数的方法得到舒尔函数的定义及相关的恒等式。在信息学竞赛中，常有考察杨表勾长公式的题目。
 
 ### 勾长
 
@@ -83,7 +83,7 @@ $$
 \dim \pi _{\lambda}={\frac {n!}{\prod_{{x\in Y(\lambda)}}{\mathrm {hook}}(x)}}.
 $$
 
-![](./images/young-tableau-2.png)
+![](./images/young-tableau-2.svg)
 
 所以对于整数分拆 $10 = 5 + 4 + 1$ 的杨表，如上图所示。有
 
@@ -105,7 +105,7 @@ $$
 
     例如，对于排列 $X = 1, 5, 7, 2, 8, 6, 3, 4$ 和 $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, 我们可得到如下杨表 $P_{X}$:
 
-    ![](./images/young-tableau-LIS-1.jpg)![](./images/young-tableau-LIS-2.jpg)
+    ![](./images/young-tableau-LIS.svg)
 
 3.  杨表 $P_{X}$ 中的第一列长度即为排列 $X$ 的 **最长下降子序列（LDS）** 长度。
 

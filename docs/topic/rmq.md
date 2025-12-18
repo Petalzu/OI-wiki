@@ -130,12 +130,14 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 由于块大小为 $O(\log_2{n})$，因而最多不超过 $64$ 位，可以用一个整数存下（即隐性条件的原因）。
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
     
-    const int MAXN = 1e5 + 5;
-    const int MAXM = 20;
+    constexpr int MAXN = 1e5 + 5;
+    constexpr int MAXM = 20;
     
     struct RMQ {
       int N, A[MAXN];

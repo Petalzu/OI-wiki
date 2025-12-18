@@ -33,17 +33,17 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ### 实现
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_1.cpp"
     ```
 
 ???+ note "[UVa1619 感觉不错 Feel Good](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4494)"
-    对于一个长度为 $n$ 的数列，找出一个子区间，使子区间内的最小值与子区间长度的乘积最大，要求在满足舒适值最大的情况下最小化长度，最小化长度的情况下最小化左端点序号。
+    对于一个长度为 $n$ 的数列，找出一个子区间，使子区间内的最小值与子区间内元素和的乘积最大，要求在满足舒适值最大的情况下最小化长度，最小化长度的情况下最小化左端点序号。
 
 本题中我们可以考虑枚举最小值，将每个位置的数 $a_i$ 当作最小值，并考虑从 $i$ 向左右扩展，找到满足 $\min\limits _ {j = l} ^ r a_j = a_i$ 的尽可能向左右扩展的区间 $[l, r]$。这样本题就被转化成了悬线法模型。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_2.cpp"
     ```
@@ -55,7 +55,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 我们会发现本题的模型和第一题的模型很像。仔细分析，发现如果我们每次只考虑某一行的所有元素，将位置 $(x, y)$ 的元素尽可能向上扩展的距离作为该位置的悬线长度，那最大子矩阵一定是这些悬线向左右扩展得到的尽可能大的矩形中的一个。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_3.cpp"
     ```
